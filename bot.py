@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from flask import Flask
 import logging
 import nltk
+import openpyxl
 import pandas as pd
 from pymorphy2 import MorphAnalyzer
 import sys
