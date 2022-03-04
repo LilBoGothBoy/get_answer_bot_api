@@ -11,7 +11,6 @@ nltk.download("stopwords")
 from nltk.corpus import stopwords
 import pandas as pd
 
-
 app = Flask(__name__)
 api = Api(app)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -37,7 +36,7 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                ans = "РЖД Техническая поддержка".
+                ans = "РЖД Техническая поддержка"
                 return str(ans), 200
 
         for word in stem_answer_list:
@@ -65,8 +64,3 @@ class Bot_Answer(Resource):
                 return str(ans), 200
         ans = "Совпадение не найдено"
         return str(ans), 404
-
-
-api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
-if __name__ == "__main__":
-    app.run(debug=True)
