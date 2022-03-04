@@ -1,13 +1,15 @@
 # -*- coding: cp1251 -*-
-from flask_restful import Api, Resource
-from flask import Flask
-from pymorphy2 import MorphAnalyzer
-from nltk.corpus import stopwords
-from string import punctuation
-from re import compile, sub, escape
 import pandas as pd
 import nltk
 nltk.download("stopwords")
+from nltk.corpus import stopwords
+from flask_restful import Api, Resource
+from flask import Flask
+from pymorphy2 import MorphAnalyzer
+from string import punctuation
+from re import compile, sub, escape
+
+
 
 app = Flask(__name__)
 api = Api(app)
