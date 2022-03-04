@@ -1,21 +1,22 @@
-# -*- coding: cp1251 -*-
-from flask_restful import Api, Resource
-from flask import Flask
+# -*- coding: utf-8 -*-
 import logging
-import nltk
-import openpyxl
-import pandas as pd
-from pymorphy2 import MorphAnalyzer
 import sys
+from pymorphy2 import MorphAnalyzer
+from flask import Flask
+from flask_restful import Api, Resource
+from string import punctuation
+from re import compile, sub, escape
+import nltk
 nltk.download("stopwords")
 from nltk.corpus import stopwords
-from re import compile, sub, escape
-from string import punctuation
+import pandas as pd
+
 
 app = Flask(__name__)
 api = Api(app)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
+
 
 class Bot_Answer(Resource):
     def get(self, user_answer):
@@ -35,28 +36,28 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                return "РЖД. Техническая поддержка.".encode('cp1251').decode('utf-8'), 200
+                return ("РЖД. Техническая поддержка.".encode('cp1251').decode('utf-8')), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][1]:
-                return "РЖД. Акции и скидки.".encode('cp1251').decode('utf-8'), 200
+                return ("РЖД. Акции и скидки.".encode('cp1251').decode('utf-8')), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][0]:
-                return "РЖД. Билеты и расписание.".encode('cp1251').decode('utf-8'), 200
+                return ("РЖД. Билеты и расписание.".encode('cp1251').decode('utf-8')), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][1]:
-                return "СБЕР. Условия доставки.".encode('cp1251').decode('utf-8'), 200
+                return ("СБЕР. Условия доставки.".encode('cp1251').decode('utf-8')), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][2]:
-                return "СБЕР. Способы оплаты.".encode('cp1251').decode('utf-8'), 200
+                return ("СБЕР. Способы оплаты.".encode('cp1251').decode('utf-8')), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][0]:
-                return "СБЕР. Оформление заказа.".encode('cp1251').decode('utf-8'), 200
-        return "Совпадение не найдено!".encode('cp1251').decode('utf-8'), 404
+                return ("СБЕР. Оформление заказа.".encode('cp1251').decode('utf-8')), 200
+        return ("Совпадение не найдено!".encode('cp1251').decode('utf-8')), 404
 
 
 api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
