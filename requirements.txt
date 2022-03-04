@@ -1,0 +1,8 @@
+re
+string
+nltk
+pymorphy2
+flask
+flask_restful
+pandas
+gunicorn
