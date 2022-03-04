@@ -11,11 +11,10 @@ from nltk.corpus import stopwords
 from re import compile, sub, escape
 from string import punctuation
 
-
-
 app = Flask(__name__)
 api = Api(app)
-
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 class Bot_Answer(Resource):
     def get(self, user_answer):
