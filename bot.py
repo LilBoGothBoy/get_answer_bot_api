@@ -1,14 +1,16 @@
+import logging
+import sys
+import pandas as pd
+import nltk
+nltk.download("stopwords")
 from re import compile, sub, escape
 from string import punctuation
 from flask_restful import Api, Resource
 from flask import Flask
 from pymorphy2 import MorphAnalyzer
-import nltk
-nltk.download("stopwords")
 from nltk.corpus import stopwords
-import pandas as pd
-import logging
-import sys
+
+
 
 
 
