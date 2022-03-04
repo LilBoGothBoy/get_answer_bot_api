@@ -20,7 +20,7 @@ app.logger.setLevel(logging.ERROR)
 
 class Bot_Answer(Resource):
     def get(self, user_answer):
-        data = pd.read_excel("data.xlsx")
+        data = pd.read_excel("Python API\data.xlsx")
         stop_words = stopwords.words("russian")
         user_answer = compile("<.*?>").sub("", user_answer)
         user_answer = compile("[%s]" % escape(
@@ -37,34 +37,34 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                ans = "РЖД Техническая поддержка"
-                return ans, 200
+                ans = "РЖД Техническая поддержка".
+                return str(ans), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][1]:
                 ans = "РЖД Акции и скидки"
-                return ans, 200
+                return str(ans), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][0]:
                 ans = "РЖД Билеты и расписание"
-                return ans, 200
+                return str(ans), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][1]:
                 ans = "СБЕР Условия доставки"
-                return ans, 200
+                return str(ans), 200
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][2]:
                 ans = "СБЕР Способы оплаты"
-                return ans, 200
+                return str(ans), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][0]:
                 ans = "СБЕР Оформление заказа"
-                return ans, 200
+                return str(ans), 200
         ans = "Совпадение не найдено"
-        return ans, 404
+        return str(ans), 404
 
 
 api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
