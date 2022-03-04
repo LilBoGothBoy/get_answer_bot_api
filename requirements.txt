@@ -3,4 +3,5 @@ pymorphy2
 flask
 flask_restful
 pandas
+openpyxl
 gunicorn
