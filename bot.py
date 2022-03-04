@@ -59,7 +59,7 @@ class Bot_Answer(Resource):
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][0]:
                 return 'СБЕР. Оформление заказа.', 200
-        return 'RZH', 404
+        return 'Совпадений не найдено!', 404
 
 
 api.add_resource(Bot_Answer, '/get_answer/<string:user_answer>')
