@@ -37,26 +37,26 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][2]:
-                return 'RZH', 200
+                return 'RZD Technical support', 200
 
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][1]:
-                return 'RZH', 200
+                return 'RZD Promotions and discounts', 200
 
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][0]:
-                return 'RZH', 200
+                return 'RZD Tickets and timetable', 200
 
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][1]:
-                return 'RZH', 200
+                return 'SBER Terms of delivery', 200
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][2]:
-                return 'RZH', 200
+                return 'SBER Payment methods', 200
 
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][0]:
-                return 'RZH', 200
+                return 'SBER Checkout', 200
         return 'RZH', 404
 
 
