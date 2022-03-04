@@ -38,27 +38,27 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                return "РЖД Техническая поддержка".encode(), 200
+                return "РЖД Техническая поддержка", 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][1]:
-                return "РЖД Акции и скидки".encode(), 200
+                return "РЖД Акции и скидки", 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][0]:
-                return "РЖД Билеты и расписание".encode(), 200
+                return "РЖД Билеты и расписание", 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][1]:
-                return "СБЕР Условия доставки".encode(), 200
+                return "СБЕР Условия доставки", 200
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][2]:
-                return "СБЕР Способы оплаты".encode(), 200
+                return "СБЕР Способы оплаты", 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][0]:
-                return str("СБЕР Оформление заказа"), 200
-        return "Совпадение не найдено".encode(), 404
+                return "СБЕР Оформление заказа", 200
+        return "Совпадение не найдено", 404
 
 
 api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
