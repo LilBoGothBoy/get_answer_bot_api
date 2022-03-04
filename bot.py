@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+import pandas as pd
 import logging
+import nltk
 import sys
+nltk.download("stopwords")
+from nltk.corpus import stopwords
 from pymorphy2 import MorphAnalyzer
 from flask import Flask
 from flask_restful import Api, Resource
 from string import punctuation
 from re import compile, sub, escape
-import nltk
-nltk.download("stopwords")
-from nltk.corpus import stopwords
-import pandas as pd
+
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,7 +21,7 @@ app.logger.setLevel(logging.ERROR)
 
 class Bot_Answer(Resource):
     def get(self, user_answer):
-        data = pd.read_excel("data.xlsx")
+        data = pd.read_excel("Python API\data.xlsx")
         stop_words = stopwords.words("russian")
         user_answer = compile("<.*?>").sub("", user_answer)
         user_answer = compile("[%s]" % escape(
@@ -36,31 +38,29 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                ans = "РЖД Техническая поддержка"
-                return str(ans), 200
+                return str("РЖД Техническая поддержка"), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][1]:
-                ans = "РЖД Акции и скидки"
-                return str(ans), 200
+                return str("РЖД Акции и скидки"), 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][0]:
-                ans = "РЖД Билеты и расписание"
-                return str(ans), 200
+                return str("РЖД Билеты и расписание"), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][1]:
-                ans = "СБЕР Условия доставки"
-                return str(ans), 200
+                return str("СБЕР Условия доставки"), 200
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][2]:
-                ans = "СБЕР Способы оплаты"
-                return str(ans), 200
+                return str("СБЕР Способы оплаты"), 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][0]:
-                ans = "СБЕР Оформление заказа"
-                return str(ans), 200
-        ans = "Совпадение не найдено"
-        return str(ans), 404
+                return str("СБЕР Оформление заказа"), 200
+        return str("Совпадение не найдено"), 404
+
+
+api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
+if __name__ == "__main__":
+    app.run(debug=True)
