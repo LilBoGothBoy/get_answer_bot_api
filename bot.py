@@ -39,26 +39,26 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][2]:
-                return 'RZD Technical support', 200
+                return 'РЖД. Техническая поддержка.', 200
 
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][1]:
-                return 'RZD Promotions and discounts', 200
+                return 'РЖД. Скидки и акции.', 200
 
         for word in stem_answer_list:
             if '1' in stem_answer_list and word in data[1][0]:
-                return 'RZD Tickets and timetable', 200
+                return 'РЖД. Билеты и расписание. ', 200
 
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][1]:
-                return 'SBER Terms of delivery', 200
+                return 'СБЕР. Условия доставки.', 200
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][2]:
-                return 'SBER Payment methods', 200
+                return 'СБЕР. Оформление заказа.', 200
 
         for word in stem_answer_list:
             if '2' in stem_answer_list and word in data[2][0]:
-                return 'SBER Checkout', 200
+                return 'СБЕР. Оформление заказа.', 200
         return 'RZH', 404
 
 
