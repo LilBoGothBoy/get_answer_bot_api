@@ -1,11 +1,13 @@
 # -*- coding: cp1251 -*-
-from re import compile, sub, escape
-from string import punctuation
-from nltk.corpus import stopwords
-from pymorphy2 import MorphAnalyzer
-from flask import Flask
 from flask_restful import Api, Resource
+from flask import Flask
+from pymorphy2 import MorphAnalyzer
+from nltk.corpus import stopwords
+from string import punctuation
+from re import compile, sub, escape
 import pandas as pd
+import nltk
+nltk.download("stopwords")
 
 app = Flask(__name__)
 api = Api(app)
@@ -29,28 +31,28 @@ class Bot_Answer(Resource):
                 del stem_answer_list[stem_answer_list.index(word)]
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][2]:
-                return "РЖД. Техническая поддержка.", 200
+                return "Р Р–Р”. РўРµС…РЅРёС‡РµСЃРєР°СЏ РїРѕРґРґРµСЂР¶РєР°.", 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][1]:
-                return "РЖД. Акции и скидки.", 200
+                return "Р Р–Р”. РђРєС†РёРё Рё СЃРєРёРґРєРё.", 200
 
         for word in stem_answer_list:
             if "1" in stem_answer_list and word in data[1][0]:
-                return "РЖД. Билеты и расписание.", 200
+                return "Р Р–Р”. Р‘РёР»РµС‚С‹ Рё СЂР°СЃРїРёСЃР°РЅРёРµ.", 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][1]:
-                return "СБЕР. Условия доставки.", 200
+                return "РЎР‘Р•Р . РЈСЃР»РѕРІРёСЏ РґРѕСЃС‚Р°РІРєРё.", 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][2]:
-                return "СБЕР. Способы оплаты.", 200
+                return "РЎР‘Р•Р . РЎРїРѕСЃРѕР±С‹ РѕРїР»Р°С‚С‹.", 200
 
         for word in stem_answer_list:
             if "2" in stem_answer_list and word in data[2][0]:
-                return "СБЕР. Оформление заказа.", 200
-        return "Совпадение не найдено!", 404
+                return "РЎР‘Р•Р . РћС„РѕСЂРјР»РµРЅРёРµ Р·Р°РєР°Р·Р°.", 200
+        return "РЎРѕРІРїР°РґРµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ!", 404
 
 
 api.add_resource(Bot_Answer, "/get_answer/<string:user_answer>")
