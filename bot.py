@@ -21,7 +21,7 @@ app.logger.setLevel(logging.ERROR)
 
 class Bot_Answer(Resource):
     def get(self, user_answer):
-        data = pd.read_excel("Python API\data.xlsx")
+        data = pd.read_excel("data.xlsx")
         stop_words = stopwords.words("russian")
         user_answer = compile("<.*?>").sub("", user_answer)
         user_answer = compile("[%s]" % escape(
